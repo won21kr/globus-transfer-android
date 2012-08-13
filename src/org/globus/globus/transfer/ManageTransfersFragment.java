@@ -43,6 +43,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -116,8 +117,19 @@ public class ManageTransfersFragment extends ListFragment
 		
 		new TransferAPILoadManageTransfers().execute();
 		
+		return V;
+	}
+	
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState)
+	{
+		super.onActivityCreated(savedInstanceState);
+		manageTransfersList = getListView();
+		manageTransfersList.setOnScrollListener(new EndlessScrollListener(10));
+		
 		int delay = 5000;   // delay for 5 sec.
-		int period = 20000;  // repeat every 30 sec.
+		int period = 20000;  // repeat every 20 sec.
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() 
 			{
@@ -126,6 +138,7 @@ public class ManageTransfersFragment extends ListFragment
 		        	if(!loadingNewTasks)
 		        	{
 			        	loadingNewTasks = true;
+			        	Log.v("GlobusDebug", "Start load new");
 			        	new TransferAPILoad10MoreNewTasks().execute();
 		        	}
 		        }
@@ -137,20 +150,10 @@ public class ManageTransfersFragment extends ListFragment
 			{
 				public void run() 
 		        {
+					Log.v("GlobusDebug", "Start refresh");
 		        	new TransferAPIRefreshTasks().execute();
 		        }
 			}, intervalForRefresh, intervalForRefresh);
-		
-		return V;
-	}
-	
-	
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState)
-	{
-		super.onActivityCreated(savedInstanceState);
-		manageTransfersList = getListView();
-		manageTransfersList.setOnScrollListener(new EndlessScrollListener(10));
 	}
     
     
@@ -1242,6 +1245,8 @@ public class ManageTransfersFragment extends ListFragment
 					Result r = client.getResult("/task_list", requestParams);
 					JSONObject jO = r.document;
 					
+					Log.v("GlobusDebug", "Output: " + jO.toString());
+					
 					if(!jO.getString("DATA_TYPE").equals("task_list"))
 						return null;
 					
@@ -1265,7 +1270,7 @@ public class ManageTransfersFragment extends ListFragment
 					}
 				}
 				
-				if(result.size() >= 1)
+				if(result.size() > 0)
 					result.remove(result.size()-1);
 				return result;
 			} 
@@ -1290,6 +1295,7 @@ public class ManageTransfersFragment extends ListFragment
 			}
 			else 
 			{
+				Log.v("GlobusDebug", "Trying to load new tasks");
 				if(result.size() > 0 && !locked)
 				{
 					for(int i=0; i < result.size(); i++)
@@ -1298,6 +1304,10 @@ public class ManageTransfersFragment extends ListFragment
 					}
 					mAdapter.notifyDataSetChanged();
 				}
+				else if(result.size() > 0 && locked)
+					Log.v("GlobusDebug", "Loading new tasks encountered a lock collision");
+				else
+					Log.v("GlobusDebug", "Nothing to load" + result.toString());
 			}
 			
 			loadingNewTasks = false;
@@ -1442,6 +1452,7 @@ public class ManageTransfersFragment extends ListFragment
 			if(result != null && !locked && !loadingNewTasks) 
 			{
 				locked = true;
+				Log.v("GlobusDebug", "Refreshing has locked the interface");
 				for(int i=0; i < result.size(); i++)
 				{
 					JSONObject task = result.get(i);
@@ -1475,6 +1486,7 @@ public class ManageTransfersFragment extends ListFragment
 
 				mAdapter.notifyDataSetChanged();
 				locked = false;
+				Log.v("GlobusDebug", "Refreshing has unlocked the interface");
 			}
 		}
 	}
