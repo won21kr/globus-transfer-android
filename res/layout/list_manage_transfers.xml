@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="12dp"
+    android:paddingTop="12dp" >
+
+    <ImageView
+        android:id="@+id/manage_transfers_task_status"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/manage_transfers_task_status_icon_placeholder"
+        android:paddingRight="8dp"
+        android:src="@drawable/transfer_complete" />
+
+    <TextView
+        android:id="@+id/manage_transfers_task_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/manage_transfers_task_status"
+        android:layout_toRightOf="@id/manage_transfers_task_status"
+        android:text="@string/manage_transfers_task_title_placeholder"
+        android:textSize="15dp" />
+
+    <TextView
+        android:textColor="@color/light"
+        android:id="@+id/manage_transfers_task_transfer_progress_status_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/manage_transfers_task_title"
+        android:layout_alignLeft="@id/manage_transfers_task_title"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:text="@string/manage_transfers_task_transfer_progress_status_text_placeholder"
+        android:textSize="13dp" />
+
+    <ProgressBar
+        android:id="@+id/manage_transfers_task_transfer_progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="8dp"
+        android:minHeight="5dp"
+        android:maxHeight="5dp"
+        android:layout_alignLeft="@id/manage_transfers_task_title"
+        android:layout_alignParentRight="true" 
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" 
+        android:progressDrawable="@drawable/regularprogressbar" 
+        android:layout_below="@id/manage_transfers_task_transfer_progress_status_text" />
+    
+    <TextView 
+        android:id="@+id/manage_transfers_task_transfer_route" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/manage_transfers_task_transfer_progress_status_text"
+        android:layout_below="@id/manage_transfers_task_transfer_progress_bar"
+        android:text="@string/manage_transfers_task_transfer_route_placeholder" 
+        android:textColor="@color/light"
+        android:textSize="10dp"/>
+
+</RelativeLayout>

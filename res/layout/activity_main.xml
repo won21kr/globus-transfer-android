@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="fill_parent"
+    android:padding="25dp" >
+    
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tools="http://schemas.android.com/tools"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+	    
+        <ImageView
+	        android:contentDescription="@string/globus_logo_content_description"
+	        android:layout_height="220dp"
+	        android:layout_width="match_parent"
+	        android:paddingTop="25dp"
+	        android:paddingRight="25dp"
+	        android:paddingBottom="35dp"
+	        android:paddingLeft="25dp"
+		    android:src="@drawable/globus_online" />
+	    
+	    <TextView
+	        android:id="@+id/login_notice"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/login_notice_initial_text" />
+	    
+	    <EditText
+	        android:id="@+id/login_username"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:hint="@string/login_globus_online_username_hint" />
+	    
+	    <EditText
+	        android:id="@+id/login_password"
+	        android:inputType="textPassword"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:hint="@string/login_globus_online_password_hint" />
+
+	    <ProgressBar
+	        android:id="@+id/login_progress_bar"
+	        style="?android:attr/progressBarStyleHorizontal"
+	        android:layout_width="fill_parent"
+	        android:layout_margin="10dp"
+	        android:layout_height="3dp"
+	        android:visibility="invisible" />
+	    
+	    <Button
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="right"
+	        android:onClick="doGOUserLogin"
+	        android:text="@string/login_button_text" />
+        
+    </LinearLayout>
+    
+</ScrollView>

@@ -1,0 +1,9 @@
+<resources>
+    
+    <color name="attempt_color">#6F89ED</color>
+    <color name="error_color">#D14141</color>
+    <color name="success_color">#349C27</color>
+    <color name="plain">#000000</color>
+    <color name="light">#9e9e9e</color>
+    
+</resources>
