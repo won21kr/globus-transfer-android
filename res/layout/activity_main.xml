@@ -29,14 +29,16 @@
 	        android:id="@+id/login_username"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:hint="@string/login_globus_online_username_hint" />
+	        android:hint="@string/login_globus_online_username_hint"
+	        android:maxLines="1" />
 	    
 	    <EditText
 	        android:id="@+id/login_password"
 	        android:inputType="textPassword"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:hint="@string/login_globus_online_password_hint" />
+	        android:hint="@string/login_globus_online_password_hint"
+            android:maxLines="1" />
 
 	    <ProgressBar
 	        android:id="@+id/login_progress_bar"
