@@ -1479,4 +1479,4 @@ public class ManageTransfersFragment extends ListFragment
 		}
 	}
 	
-}
+} /*PH*/

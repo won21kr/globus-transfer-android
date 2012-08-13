@@ -138,4 +138,4 @@ public class Welcome extends FragmentActivity
 		confirm.show();
 	}
 	
-}
+} /*PH*/
