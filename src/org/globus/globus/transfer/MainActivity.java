@@ -50,6 +50,9 @@ public class MainActivity extends Activity {
 	private String username = null;
 	private String samlCookie = null;
 	private ProgressBar loginProgress;
+
+    private static final String NEXUS_AUTH_URL =
+        "https://nexus.api.globusonline.org/authenticate";
 	
 	
     @Override
@@ -121,7 +124,7 @@ public class MainActivity extends Activity {
 				content.put("username", usernameStr);
 				content.put("password", passwordStr);
 				
-				URL url = new URL("https://www.globusonline.org/service/graph/authenticate");
+				URL url = new URL(NEXUS_AUTH_URL);
 				
 				urlConnection = (HttpsURLConnection) url.openConnection();
 				
